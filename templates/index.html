@@ -5,8 +5,18 @@
   <title>PinOthers</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@kairi_005">
+  <meta property="og:url" content="https://pinothers.herokuapp.com/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="PinOthers">
+  <meta property="og:description" content="他人のツイートをプロフィールに固定できるWebサービス">
+  <meta property="og:image" content="https://pinothers.herokuapp.com/static/thumb.png">
+
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/ico">
   <script defer src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   <script defer src="{{ url_for('static', filename='script.js') }}"></script>
 </head>

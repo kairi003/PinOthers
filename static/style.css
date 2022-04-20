@@ -1,7 +1,6 @@
 html {
   text-align: center;
   background-color: #c6e3fa;
-  height: 100%;
 }
 
 body {
@@ -9,7 +8,6 @@ body {
   text-align: left;
   color: #212121;
   width: 100%;
-  height: 100%;
   box-sizing: border-box;
   max-width: 550px;
   margin: 0 auto;

@@ -124,6 +124,9 @@ def pin_tweet():
     finally:
         return resp
 
+@app.route('/favicon.ico')
+def favicon():
+    return redirect(url_for('static', filename='favicon.ico'))
 
 if __name__ == "__main__":
     app.run(debug=False)

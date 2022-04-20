@@ -30,9 +30,9 @@ class ExAPI(tweepy.API):
 @app.route('/')
 def root():
     session.permanent = True
-    #print('access_token: ', session.get('access_token'))
-    #print('access_token_secret: ', session.get('access_token'))
-    #print('request_token: ', session.get('request_token'))
+    print('access_token: ', session.get('access_token'))
+    print('access_token_secret: ', session.get('access_token'))
+    print('request_token: ', session.get('request_token'))
     user = get_user()
     return render_template('index.html', user=user)
 
@@ -62,7 +62,7 @@ def login():
     try:
         redirect_url = auth.get_authorization_url(False)
         session['request_token'] = auth.request_token
-        #print("request_token: ", session['request_token'])
+        print("request_token: ", session['request_token'])
         return redirect(redirect_url)
     except Exception as ee:
         logging.error(str(ee))
@@ -79,6 +79,7 @@ def logout():
 
 @app.route('/callback', methods=['GET'])
 def callback():
+    session.permanent = True
     if 'request_token' in session and 'oauth_verifier' in request.args:
         auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
         auth.request_token = session.pop('request_token', None)
@@ -87,8 +88,10 @@ def callback():
             auth.get_access_token(verifier)
             session['access_token'] = auth.access_token
             session['access_token_secret'] = auth.access_token_secret
+            print(f"{session['access_token']=}")
+            print(f"{session['access_token_secret']=}")
         except Exception as ee:
-            logging.error(str(ee))
+            logging.error('ERROR: ', str(ee))
     return redirect(url_for('root'))
 
 

@@ -11,7 +11,7 @@ import tweepy
 from tweepy.api import payload
 
 app = Flask(__name__)
-app.secret_key = os.urandom(24)
+app.secret_key = os.environ['SECRET_KEY']
 app.permanent_session_lifetime = timedelta(days=7)
 
 CONSUMER_KEY = os.environ['CONSUMER_KEY']
@@ -30,9 +30,9 @@ class ExAPI(tweepy.API):
 @app.route('/')
 def root():
     session.permanent = True
-    print('access_token: ', session.get('access_token'))
-    print('access_token_secret: ', session.get('access_token'))
-    print('request_token: ', session.get('request_token'))
+    #print('access_token: ', session.get('access_token'))
+    #print('access_token_secret: ', session.get('access_token'))
+    #print('request_token: ', session.get('request_token'))
     user = get_user()
     return render_template('index.html', user=user)
 
@@ -63,7 +63,7 @@ def login():
     try:
         redirect_url = auth.get_authorization_url(False)
         session['request_token'] = auth.request_token
-        print("request_token: ", session['request_token'])
+        #print("request_token: ", session['request_token'])
         return redirect(redirect_url)
     except Exception as ee:
         logging.error(str(ee))
@@ -87,8 +87,8 @@ def callback():
             auth.get_access_token(verifier)
             session['access_token'] = auth.access_token
             session['access_token_secret'] = auth.access_token_secret
-            print(f"{session['access_token']=}")
-            print(f"{session['access_token_secret']=}")
+            #print(f"{session['access_token']=}")
+            #print(f"{session['access_token_secret']=}")
         except Exception as ee:
             logging.error('ERROR: ', str(ee))
     return redirect(url_for('root'))

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>PinOthers</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <script defer src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+
+<body>
+  <h1>PinOthers</h1>
+  <header>
+    他人のツイートをRTしてプロフィールに固定できます。<br>
+    利用するにはTwitterへのログインが必要です。<br>
+    RT済みの場合でもRTし直すのでご注意ください。<br>
+    本サービスを利用して起こった不具合につきましては責任を負いかねます。
+  </header>
+  <main>
+    <div class="account-block">
+      {% if user is none %}
+      <span id="login" class="log-link"><a href="{{ url_for('login') }}">Login to Twitter</a></span>
+      <input type="hidden" id="loginStatus" value="false">
+      {% else %}
+      <a href="https://twitter.com/{{ user.screen_name }}"><img class="user-icon"
+          src="{{ user.profile_image_url_https }}" /></a>
+      <div class="user-name-block">
+        <div class="user-name"><a href="https://twitter.com/{{ user.screen_name }}">{{ user.name }}</a></div>
+        <div class="user-id"><a href="https://twitter.com/{{ user.screen_name }}">@{{ user.screen_name }}</a></div>
+      </div>
+      <span id="logout" class="log-link"><a href="{{ url_for('logout') }}">Logout</a></span>
+      <input type="hidden" id="loginStatus" value="true">
+      {% endif %}
+    </div>
+    <form id="pinForm" action="javascript: console.log(2)">
+      <input type="hidden" name="id" id="tweetId">
+      <label for="tweetUrl">
+        <input type="text" id="tweetUrl" class="tweet-url" title="Tweet URL" placeholder="https://twitter.com/{user-id}/status/{tweet-id}" />
+      </label>
+      <button id="pinSubmit" disabled>
+        <span class="material-icons">push_pin</span>
+      </button>
+    </form>
+    <div id="tweet" class="tweet"></div>
+  </main>
+  <footer>
+    <ul>
+      <li>Twitter: <a href="https://twitter.com/kairi_005">kairi_005</a></li>
+      <li>GitHub: <a href="https://github.com/kairi003">kairi003</a></li>
+    </ul>
+    <small>© 2018 kairi</small>
+  </footer>
+
+</body>
+
+</html>

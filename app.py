@@ -56,6 +56,7 @@ def get_user():
 
 @app.route('/login', methods=['GET'])
 def login():
+    session.permanent = True
     callback_url = urljoin(request.host_url, url_for('callback'))
     auth = tweepy.OAuthHandler(
         CONSUMER_KEY, CONSUMER_SECRET, callback=callback_url)
@@ -71,9 +72,7 @@ def login():
 
 @app.route('/logout', methods=['GET'])
 def logout():
-    session.pop('access_token', None)
-    session.pop('access_token_secret', None)
-    session.pop('request_token', None)
+    session.clear()
     return redirect(url_for('root'))
 
 
@@ -97,6 +96,7 @@ def callback():
 
 @app.route('/pin_tweet', methods=['POST'])
 def pin_tweet():
+    session.permanent = True
     auth = tweepy.OAuthHandler(
         CONSUMER_KEY, CONSUMER_SECRET,
         session.get('access_token'), session.get('access_token_secret')

@@ -16,6 +16,7 @@ app.permanent_session_lifetime = timedelta(days=7)
 
 CONSUMER_KEY = os.environ['CONSUMER_KEY']
 CONSUMER_SECRET = os.environ['CONSUMER_SECRET']
+app.config['ENV'] = os.environ['ENV']
 
 class ExAPI(tweepy.API):
     @payload('json')
@@ -124,9 +125,16 @@ def pin_tweet():
     finally:
         return resp
 
+@app.before_request
+def before_request():
+    if not request.is_secure and app.env != 'development':
+        url = request.url.replace('http://', 'https://', 1)
+        code = 301
+        return redirect(url, code=code)
+
 @app.route('/favicon.ico')
 def favicon():
     return redirect(url_for('static', filename='favicon.ico'))
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run()

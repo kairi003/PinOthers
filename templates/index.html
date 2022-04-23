@@ -5,6 +5,7 @@
   <title>PinOthers</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="7B2JrdwaelfyCKvZwqjFW8wOc6BipPaxWt0DKCwYrjE" />
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:site" content="@kairi_005">
@@ -14,9 +15,10 @@
   <meta property="og:description" content="他人のツイートをプロフィールに固定できるWebサービス">
   <meta property="og:image" content="https://pinothers.herokuapp.com/static/thumb.png">
 
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/modern-css-reset/dist/reset.min.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
-  <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/ico">
+  <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/ico" />
   
   <script defer src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   <script defer src="{{ url_for('static', filename='script.js') }}"></script>
@@ -25,10 +27,10 @@
 <body>
   <h1>PinOthers</h1>
   <header>
-    他人のツイートをRTしてプロフィールに固定できます。<br>
-    利用するにはTwitterへのログインが必要です。<br>
-    RT済みの場合でもRTし直すのでご注意ください。<br>
-    また本サービスを利用して起こった不具合につきましては責任を負いかねます。<br>
+    <p>他人のツイートをRTしてプロフィールに固定できます。</p>
+    <p>利用するにはTwitterへのログインが必要です。</p>
+    <p>RT済みの場合でもRTし直すのでご注意ください。</p>
+    <p>また本サービスを利用して起こった不具合につきましては責任を負いかねます。</p>
     <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-url="https://pinothers.herokuapp.com/" data-hashtags="PinOthers" data-show-count="false">Tweet</a>
   </header>
   <main>
@@ -59,6 +61,12 @@
     <div id="tweet" class="tweet"></div>
   </main>
   <footer>
+    <h3>仕組みについて</h3>
+    <p>Twitterの仕様として、ツイートの固定はツイートの作成者のみが行うことができます。</p>
+    <p>また、リツイートは一見元ツイートのリンクのように見えますが、内部的にはリツイート者の新たなツイートです。</p>
+    <p>ですので、クライアントではボタンが表示されませんが、非公開のAPIを叩くことでリツイートを固定することができます。</p>
+    <p>本サービスでは他人のツイートのURLが入力された場合、そのツイートをリツイートして固定します。</p>
+    <h3>Contact</h3>
     <ul>
       <li>Twitter: <a href="https://twitter.com/kairi_005">kairi_005</a></li>
       <li>GitHub: <a href="https://github.com/kairi003">kairi003</a></li>

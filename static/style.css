@@ -15,8 +15,25 @@ body {
   background-color: #f0f7fc;
 }
 
+h3 {
+  margin-top: 1em;
+}
+
+p {
+  text-indent: 1em;
+}
+
+ul {
+  margin: 0;
+}
+
+header, main, footer {
+  margin: 1em 0;
+}
+
 .user-icon {
   border-radius: 50%;
+  display: inline-block;
 }
 .user-name-block {
   display: inline-block;

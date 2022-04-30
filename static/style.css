@@ -23,7 +23,7 @@ p {
   text-indent: 1em;
 }
 
-ul {
+ul,ol {
   margin: 0;
 }
 

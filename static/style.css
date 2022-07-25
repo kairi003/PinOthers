@@ -19,6 +19,10 @@ h3 {
   margin-top: 1em;
 }
 
+nav.local {
+  float: right;
+}
+
 p {
   text-indent: 1em;
 }

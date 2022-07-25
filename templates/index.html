@@ -2,10 +2,12 @@
 <html>
 
 <head>
-  <title>PinOthers</title>
   <meta charset="utf-8">
+  <title>PinOthers</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="7B2JrdwaelfyCKvZwqjFW8wOc6BipPaxWt0DKCwYrjE" />
+  <script src="{{ url_for('static', filename='local.js') }}"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='local.css') }}">
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:site" content="@kairi_005">
@@ -25,12 +27,25 @@
 </head>
 
 <body>
-  <h1>PinOthers</h1>
   <header>
-    <p>他人のツイートをRTしてプロフィールに固定できます。</p>
-    <p>利用するにはTwitterへのログインが必要です。</p>
-    <p>RT済みの場合でもRTし直すのでご注意ください。</p>
-    <p>また本サービスを利用して起こった不具合につきましては責任を負いかねます。</p>
+    <nav class="local">
+      lang:
+      <a href="#ja" tabindex="-1">ja</a>
+      <a href="#en" tabindex="-1">en</a>
+    </nav>
+    <h1 class="title">PinOthers</h1>
+    <section class="description" lang="ja">
+      <p>他人のツイートをRTしてプロフィールに固定できます。</p>
+      <p>利用するにはTwitterへのログインが必要です。</p>
+      <p>RT済みの場合でもRTし直すのでご注意ください。</p>
+      <p>また本サービスを利用して起こった不具合につきましては責任を負いかねます。</p>
+    </section>
+    <section class="description" lang="en">
+      <p>PinOthers can RT other people's tweets and pin them to your profile.</p>
+      <p>You must be logged in to Twitter to use this service.</p>
+      <p>Even if you have already retweeted a post, PinOthers will retweet it again.</p>
+      <p>I am not responsible for any problems that may occur using this service.</p>
+    </section>
     <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-url="https://pinothers.herokuapp.com/" data-hashtags="PinOthers" data-show-count="false">Tweet</a>
   </header>
   <main>
@@ -59,7 +74,7 @@
       </button>
     </form>
     <div id="tweet" class="tweet"></div>
-    <div id="usage">
+    <section class="usage" lang="ja">
       <h3>使い方</h3>
       <ol>
         <li>「Login to Twitter」からTwitterと連携します</li>
@@ -68,14 +83,33 @@
         <li>テキストボックス横のピンボタンを押すと固定できます</li>
         <li>よくわからないエラーが起こった場合は作者Twitterにご連絡ください</li>
       </ol>
-    </div>
+    </section>
+    <section class="usage" lang="en">
+      <h3>Usage</h3>
+      <ol>
+        <li>Connect to your account from "Login to Twitter"</li>
+        <li>Paste the URL of the tweet you want to pin in the text box</li>
+        <li>If it is pinnable, a preview will be displayed</li>
+        <li>Click the pin button next to the text box to pin the tweet</li>
+        <li>If you encounter any unfamiliar errors, please contact the author on Twitter</li>
+      </ol>
+    </section>
   </main>
   <footer>
-    <h3>仕組みについて</h3>
-    <p>Twitterの仕様として、ツイートの固定はツイートの作成者のみが行うことができます。</p>
-    <p>また、リツイートは一見元ツイートのリンクのように見えますが、内部的にはリツイート者の新たなツイートです。</p>
-    <p>ですので、クライアントではボタンが表示されませんが、非公開のAPIを叩くことでリツイートを固定することができます。</p>
-    <p>本サービスでは他人のツイートのURLが入力された場合、そのツイートをリツイートして固定します。</p>
+    <section class="mechanism" lang="ja">
+      <h3>仕組みについて</h3>
+      <p>Twitterの仕様として、ツイートの固定はツイートの作成者のみが行うことができます。</p>
+      <p>また、リツイートは一見元ツイートのリンクのように見えますが、内部的にはリツイート者の新たなツイートです。</p>
+      <p>ですので、クライアントではボタンが表示されませんが、非公開のAPIを叩くことでリツイートを固定することができます。</p>
+      <p>本サービスでは他人のツイートのURLが入力された場合、そのツイートをリツイートして固定します。</p>
+    </section>
+    <section class="mechanism" lang="en">
+      <h3>What it does</h3>
+      <p>As a Twitter specification, only the author of a tweet can pin it.</p>
+      <p>Also, a retweet looks like a link to the original tweet, but in the system it is a new tweet from the retweeter.</p>
+      <p>So, although the button is not displayed on the client, you can pin your retweet by hitting a private API.</p>
+      <p>This service will retweet and pin the tweet if you input the URL of others' tweet.</p>
+    </section>
     <h3>Contact</h3>
     <ul>
       <li>Twitter: <a href="https://twitter.com/kairi_005">kairi_005</a></li>

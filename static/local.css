@@ -1,0 +1,7 @@
+html:lang(ja) :not(:lang(ja)),
+html:lang(en) :not(:lang(en)) {
+  display: none;
+}
+.local {
+  text-align: right;
+}
